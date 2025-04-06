@@ -46,7 +46,7 @@ jobs:
                exit 0
              else
                echo "⏳ Service not available, retrying in 10 seconds..."
-               docker-compose logs
+               docker logs
                sleep 10
              fi
            done
