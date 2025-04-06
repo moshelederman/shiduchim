@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlomit-sarel
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shlomit-sarel
+  template:
+    metadata:
+      labels:
+        app: shlomit-sarel
+    spec:
+      containers:
+      - name: flask
+        image: <DOCKER_USERNAME>/shlomit-sarel:latest
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shlomit-service
+spec:
+  selector:
+    app: shlomit-sarel
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
