@@ -38,7 +38,7 @@ jobs:
           set -e
           ls -la
           docker build -t shlomit-sarel .
-          docker run -d shlomit-sarel
+          docker run -d -p 5000:5000 shlomit-sarel
 
            for i in {1..7}; do
              if curl -f http://localhost:5000; then
