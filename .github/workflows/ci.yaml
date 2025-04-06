@@ -52,7 +52,6 @@ jobs:
            done
 
            echo "❌ Service not available after multiple retries."
-           docker-compose logs
            exit 1
 
       - name: Log in to Docker Hub
