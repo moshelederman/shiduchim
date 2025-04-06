@@ -38,8 +38,8 @@ jobs:
           set -e
           ls -la
           cd app
-          docker build -d -t shlomit-sarel .
-          docker run shlomit-sarel
+          docker build -t shlomit-sarel .
+          docker run -d shlomit-sarel
 
            for i in {1..7}; do
              if curl -f http://localhost:5000; then
