@@ -15,5 +15,4 @@ module "gke" {
   ip_range_services     = "10.3.0.0/20"
   kubernetes_version    = "latest"
   release_channel       = "STABLE"
-  enable_autopilot      = true
 }
