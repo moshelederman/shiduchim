@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlomit-sarel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlomit-sarel
+  template:
+    metadata:
+      labels:
+        app: shlomit-sarel
+    spec:
+      containers:
+        - name: flask-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5000

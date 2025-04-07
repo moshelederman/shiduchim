@@ -62,3 +62,16 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:1.0.$BUILD_NUMBER .
           docker push ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:1.0.$BUILD_NUMBER
+
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+      - name: Login to Helm OCI registry (DockerHub)
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | helm registry login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin docker.io
+
+      - name: Package Helm Chart
+        run: |
+          helm package charts
+          ls -la
+          helm push shlomit-sarel-0.1.${GITHUB_RUN_NUMBER}.tgz oci://docker.io/moshelederman
