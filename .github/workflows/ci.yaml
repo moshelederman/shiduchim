@@ -74,6 +74,5 @@ jobs:
 
       - name: Package Helm Chart
         run: |
-          helm package charts
-          ls -la
+          helm package charts/shlomit-sarel
           helm push shlomit-sarel-0.1.${GITHUB_RUN_NUMBER}.tgz oci://docker.io/moshelederman
