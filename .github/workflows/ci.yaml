@@ -59,6 +59,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
+          cd app
           docker build -t ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:latest .
           docker build -t ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:1.0.$BUILD_NUMBER .
           docker push ${{ secrets.DOCKER_USERNAME }}/shlomit-sarel:latest
